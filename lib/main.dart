@@ -110,6 +110,7 @@ class _IntroProductAppState extends State<IntroProductApp> {
       child: Row(children: [
         Container(
           margin: EdgeInsets.all(10),
+          padding: EdgeInsets.fromLTRB(0, 0, 3, 3),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
@@ -144,6 +145,7 @@ class _IntroProductAppState extends State<IntroProductApp> {
         ),
         Container(
           margin: EdgeInsets.all(10),
+          padding: EdgeInsets.fromLTRB(0, 0, 3, 3),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
@@ -164,9 +166,10 @@ class _IntroProductAppState extends State<IntroProductApp> {
               )),
         ),
         const SizedBox(
-          width: 130,
+          width: 120,
         ),
         Container(
+          padding: EdgeInsets.fromLTRB(0, 0, 2, 1),
           decoration: BoxDecoration(
               color: Colors.pink,
               borderRadius: BorderRadius.circular(100),
