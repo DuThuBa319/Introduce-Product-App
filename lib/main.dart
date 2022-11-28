@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/intl_browser.dart';
 
 void main() {
   runApp(IntroProductApp());
@@ -13,8 +15,8 @@ class IntroProductApp extends StatefulWidget {
 }
 
 class _IntroProductAppState extends State<IntroProductApp> {
-  String CountProduct = '00';
-
+  var _numberFormat = NumberFormat('00', 'en_US');
+  int CountProduct = 0;
   int _selectColorModel = 1;
   @override
   Widget build(BuildContext context) {
@@ -63,7 +65,7 @@ class _IntroProductAppState extends State<IntroProductApp> {
     );
   }
 
-  Row BottmRow2() {
+  Widget BottmRow2() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -104,7 +106,7 @@ class _IntroProductAppState extends State<IntroProductApp> {
     );
   }
 
-  Padding BottomRow3() {
+  Widget BottomRow3() {
     return Padding(
       padding: EdgeInsets.fromLTRB(20, 0, 40, 30),
       child: Row(children: [
@@ -118,12 +120,7 @@ class _IntroProductAppState extends State<IntroProductApp> {
           child: IconButton(
               onPressed: () {
                 setState(() {
-                  CountProduct = (int.parse(CountProduct) > 0)
-                      ? (int.parse(CountProduct) - 1).toString()
-                      : '0';
-                  if (int.parse(CountProduct) < 10) {
-                    CountProduct = '0' + CountProduct;
-                  }
+                  CountProduct = (CountProduct > 0) ? (CountProduct - 1) : 0;
                 });
               },
               icon: const Icon(
@@ -135,7 +132,7 @@ class _IntroProductAppState extends State<IntroProductApp> {
         Container(
           padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
           child: Text(
-            '$CountProduct',
+            _numberFormat.format(CountProduct).toString(),
             style: const TextStyle(
                 color: Color.fromRGBO(80, 80, 80, 1),
                 fontSize: 20,
@@ -153,10 +150,7 @@ class _IntroProductAppState extends State<IntroProductApp> {
           child: IconButton(
               onPressed: () {
                 setState(() {
-                  CountProduct = (int.parse(CountProduct) + 1).toString();
-                  if (int.parse(CountProduct) < 10) {
-                    CountProduct = '0' + CountProduct;
-                  }
+                  CountProduct += 1;
                 });
               },
               icon: const Icon(
@@ -186,7 +180,7 @@ class _IntroProductAppState extends State<IntroProductApp> {
     );
   }
 
-  OutlinedButton CustomRadioBtn(Color ModelColor, int SelectColorModel) {
+  Widget CustomRadioBtn(Color ModelColor, int SelectColorModel) {
     return OutlinedButton(
         onPressed: () {
           setState(() {
